@@ -1,0 +1,44 @@
+group 'com.app.yinshi_plugin'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    /*萤石SDK核心模块，必须依赖*/
+    implementation 'com.ezviz.sdk:ezviz-sdk:4.12.0'
+
+    /*视频通话模块，按需使用*/
+    implementation 'com.ezviz.sdk:videotalk:1.0.0'
+
+    /*码流获取模块，按需使用*/
+    implementation 'com.ezviz.sdk:streamctrl:1.0.0'
+}
