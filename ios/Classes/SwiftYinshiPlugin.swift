@@ -34,22 +34,26 @@ public class SwiftYinshiPlugin: NSObject, FlutterPlugin {
                     info["msg"]   = "获取设备成功"
                     info["error"] = 0
                     let devices = NSMutableArray()
-
-                    for item in deviceList as! [EZDeviceInfo] {
-                        
-                        let camera = item.cameraInfo.first as! EZCameraInfo
                     
-                        let device = NSMutableDictionary()
-                        device["deviceCover"] = item.deviceCover
-                        device["deviceName"] = item.deviceName
-                        device["deviceSerial"] = camera.deviceSerial
-                        device["cameraNo"] = camera.cameraNo
-                        device["videoLevel"] = camera.videoLevel
-                        device["isEncrypt"] = item.isEncrypt
-                        device["isSupportTalk"] = item.isSupportTalk
-                        device["status"] = item.status;
-                        devices.add(device)
+                    if deviceList != nil {
+                        for item in deviceList as! [EZDeviceInfo] {
+                            
+                            let camera = item.cameraInfo.first as! EZCameraInfo
+                            
+                            let device = NSMutableDictionary()
+                            device["deviceCover"] = item.deviceCover
+                            device["deviceName"] = item.deviceName
+                            device["deviceSerial"] = camera.deviceSerial
+                            device["cameraNo"] = camera.cameraNo
+                            device["videoLevel"] = camera.videoLevel
+                            device["isEncrypt"] = item.isEncrypt
+                            device["isSupportTalk"] = item.isSupportTalk
+                            device["status"] = item.status;
+                            devices.add(device)
+                        }
                     }
+                    
+                    
                     info["data"]  = devices
                  }
                 result(info)
