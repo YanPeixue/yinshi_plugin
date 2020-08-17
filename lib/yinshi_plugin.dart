@@ -16,6 +16,10 @@ class YinshiPlugin {
     return reply;
   }
 
+  static void destroyPlayer() {
+    _channel.invokeMethod("dispose");
+  }
+
   static Future<Map> setYsAccessToken(String accessToken) async {
     final Map reply = await _channel.invokeMethod("setAccessToken", accessToken);
     return reply;
