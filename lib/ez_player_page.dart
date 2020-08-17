@@ -10,11 +10,12 @@ class EzPlayerPage extends StatefulWidget {
   final String deviceSerial;
   final int cameraNo;
   final int isSupportTalk;
+  final String deviceName;
 
   @override
   _EzPlayerPageState createState() => _EzPlayerPageState();
 
-  EzPlayerPage(this.deviceSerial, this.cameraNo, this.isSupportTalk);
+  EzPlayerPage(this.deviceSerial, this.cameraNo, this.isSupportTalk, {this.deviceName});
 }
 
 class _EzPlayerPageState extends State<EzPlayerPage>
@@ -99,7 +100,7 @@ class _EzPlayerPageState extends State<EzPlayerPage>
           });
     return Scaffold(
         appBar: AppBar(
-          title: Text("监控画面"),
+          title: Text(widget.deviceName ?? "监控画面", style: TextStyle(fontSize: 16),),
         ),
         body:
         MediaQuery.of(context).orientation == Orientation.landscape ?
