@@ -49,7 +49,7 @@ class _EzPlayerPageState extends State<EzPlayerPage>
     super.dispose();
 
     YinshiPlugin.destroyPlayer();
-    
+
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown

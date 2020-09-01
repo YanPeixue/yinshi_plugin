@@ -42,8 +42,6 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
     channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "yinshi_plugin");
     channel.setMethodCallHandler(this);
 
-    application = (Application )flutterPluginBinding.getApplicationContext();
-
     BinaryMessenger messenger = flutterPluginBinding.getBinaryMessenger();
 
     EventChannel eventChannel = new EventChannel(messenger, "rate");
@@ -56,7 +54,11 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
     } else {
       System.out.println("注册视图失败");
     }
+
+    application = (Application )flutterPluginBinding.getApplicationContext();
+    System.out.println("application: " + application);
   }
+
 
   // This static function is optional and equivalent to onAttachedToEngine. It supports the old
   // pre-Flutter-1.12 Android projects. You are encouraged to continue supporting
@@ -86,6 +88,7 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull final Result result) {
+
     if (call.method.equals("getPlatformVersion")) {
       result.success("Android " + android.os.Build.VERSION.RELEASE);
     } else if (call.method.equals("register")) {
