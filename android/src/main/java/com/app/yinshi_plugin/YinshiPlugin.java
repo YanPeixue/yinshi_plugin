@@ -1,6 +1,7 @@
 package com.app.yinshi_plugin;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,16 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
   private MethodChannel channel;
   private Application application;
 
+  // 上下文 Context
+  private final Context context;
+
+  public YinshiPlugin(Registrar registrar) {
+    this.context = registrar.context();
+    application = (Application ) registrar.context().getApplicationContext();
+
+    System.out.println("application: " + application);
+  }
+
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
     channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "yinshi_plugin");
@@ -54,9 +65,6 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
     } else {
       System.out.println("注册视图失败");
     }
-
-    application = (Application )flutterPluginBinding.getApplicationContext();
-    System.out.println("application: " + application);
   }
 
 
@@ -72,7 +80,7 @@ public class YinshiPlugin implements FlutterPlugin, MethodCallHandler {
   public static void registerWith(Registrar registrar) {
 
     final MethodChannel channel = new MethodChannel(registrar.messenger(), "yinshi_plugin");
-    channel.setMethodCallHandler(new YinshiPlugin());
+    channel.setMethodCallHandler(new YinshiPlugin(registrar));
 
     EventChannel eventChannel = new EventChannel(registrar.messenger(), "rate");
     EventStreamHander streamHander = new EventStreamHander();
