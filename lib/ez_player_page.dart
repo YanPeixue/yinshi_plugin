@@ -374,9 +374,9 @@ class _EzPlayerPageState extends State<EzPlayerPage>
                             FlatButton(
                               color: Colors.white,
                               onPressed: () {
-                                isTalkPress = true;
-                                YinshiPlugin.prepareTalking();
-                                _animationController.forward();
+                                // isTalkPress = true;
+                                // YinshiPlugin.prepareTalking();
+                                // _animationController.forward();
                               },
                               child: Column(
                                 children: [
@@ -399,7 +399,6 @@ class _EzPlayerPageState extends State<EzPlayerPage>
                               color: Colors.white,
                               onPressed: () {
                                 YinshiPlugin.captureImage().then((value) {
-                                  print("Save");
                                   print(value);
                                   print(value["data"].runtimeType);
                                   if (value["error"] == 0) {
